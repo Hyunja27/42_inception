@@ -19,8 +19,11 @@ RUN apt-get update -y && apt-get upgrade -y; \
     apt-get -y install ${WP_REQUIREMENTS}
 
 RUN wget https://wordpress.org/latest.tar.gz && \
-    tar -xvf latest.tar.gz && \
-    mv /wordpress/* /var/www/html/ && \
+    tar -xvf latest.tar.gz;
+
+RUN mkdir -p /var/www/html;
+
+RUN mv /wordpress/* /var/www/html/ && \
     chown -R www-data:www-data /var/www/html && \
     rm -r /wordpress && rm latest.tar.gz;
 

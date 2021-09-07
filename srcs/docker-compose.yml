@@ -1,16 +1,16 @@
 version: '3'
 
-volumes: 
+volumes:
   data: {}
 
 services: 
-  nginx:
-    build: ./requirements/nginx
-    restart: always
-    ports:
-      - "443:443"
+  nginx: 
     volumes:
       - data:/var/www/html
+    build: ./requirements/nginx
+    restart: always 
+    ports:
+      - "443:443"
     networks:
       - sparkworld
     tty: true 
@@ -25,16 +25,17 @@ services:
     networks:
       - sparkworld
     tty: true
+    depends_on:
+      - nginx
 
   mariadb:
     build: ./requirements/mariadb
     restart: always
-    expose: 
+    expose:
       - "3306"
     networks:
       - sparkworld
     tty: true
-
 
 networks: 
   sparkworld:

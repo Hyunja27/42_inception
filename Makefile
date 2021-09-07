@@ -39,6 +39,11 @@ log :
 	@$(YML) logs
 	@($(RM) $(RMFLAGS) $(NAME))
 
+build :
+	@echo "${PURPLE}[${RED} Build all images ${PURPLE}]"
+	@$(YML) build
+	@($(RM) $(RMFLAGS) $(NAME))
+
 re :
 	@echo "${PURPLE}[${RED} Restart Docker composer${PURPLE} :Restarting.. ]"
 	@echo "${PURPLE}->remaking $(NAME).."

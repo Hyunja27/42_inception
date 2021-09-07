@@ -9,9 +9,7 @@ RUN apt-get update -y && apt-get upgrade -y; \
 
 RUN sed -i 's/bind-address/#bind-address/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
-RUN service mysql start
-
-RUN mysql -e "CREATE DATABASE ${DB}; \
+RUN service mysql start && mysql -e "CREATE DATABASE ${DB}; \
             CREATE USER '${USER_NAME}'@'%' IDENTIFIED BY '${USER_PASSWORD}'; \
             GRANT ALL ON ${DB}.* TO '${USER_NAME}'@'%'; \
             FLUSH PRIVILEGES;"
