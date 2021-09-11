@@ -4,16 +4,18 @@ volumes:
   data: {}
 
 services: 
-  nginx: 
-    volumes:
-      - data:/var/www/html
+  nginx:
+    depends_on:
+      - wordpress
     build: ./requirements/nginx
     restart: always 
+    volumes:
+      - data:/var/www/html
     ports:
       - "443:443"
     networks:
       - sparkworld
-    tty: true 
+    tty: true
 
   wordpress:
     build: ./requirements/wordpress
@@ -25,8 +27,6 @@ services:
     networks:
       - sparkworld
     tty: true
-    depends_on:
-      - nginx
 
   mariadb:
     build: ./requirements/mariadb
