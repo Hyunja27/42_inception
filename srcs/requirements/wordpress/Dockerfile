@@ -40,8 +40,9 @@ RUN echo  "listen = 0.0.0.0:9000" >> /etc/php/7.3/fpm/pool.d/www.conf
 
 EXPOSE 9000
 
-
 RUN mkdir -p /run/php/
 
-CMD	["bash", "/tools/start.sh"]
+COPY ./tools/start.sh /entry.sh
+
+CMD	["bash", "/entry.sh"]
 # RUN service php7.3-fpm start
