@@ -13,6 +13,7 @@ ARG WP_REQUIREMENTS="php7.3 \
                  php-mbstring \
                  php-xml \
                  sendmail \
+                 dumb-init \
                  vim"
 
 RUN apt-get update -y && apt-get upgrade -y; \
@@ -44,5 +45,6 @@ RUN mkdir -p /run/php/
 
 COPY ./tools/start.sh /entry.sh
 
-CMD	["bash", "/entry.sh"]
-# RUN service php7.3-fpm start
+ENTRYPOINT	["/usr/bin/dumb-init"]
+
+CMD	["/usr/sbin/php-fpm7.3"]

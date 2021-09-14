@@ -5,7 +5,7 @@ ARG USER_PASSWORD=0000
 ARG DB=wordpress_db
 
 RUN apt-get update -y && apt-get upgrade -y; \
-    apt-get -y install mariadb-server;
+    apt-get -y install mariadb-server vim;
 
 RUN sed -i 's/bind-address/#bind-address/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
