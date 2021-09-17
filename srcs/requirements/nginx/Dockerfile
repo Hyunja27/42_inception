@@ -1,6 +1,5 @@
 FROM debian:buster
 
-
 # ARG USER_NAME=spark
 # ARG USER_PASSWORD=0000
 # ARG DB=wordpress_db
