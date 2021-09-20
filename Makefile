@@ -12,7 +12,7 @@ MINT = \033[36m
 RED = \033[31m
 BLINK = \033[5m
 BOLD = \033[1m
-BACKGRAY = \033[100m
+BACKGRAY = \033[100m 
 NO_COLOR = \e[0m
 
 make :
