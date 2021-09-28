@@ -1,9 +1,5 @@
 FROM debian:buster
 
-ARG USER_NAME=spark
-ARG USER_PASSWORD=0000
-ARG DB=wordpress_db
-ARG DB_KIND=mariadb
 ARG WP_REQUIREMENTS="php7.3 \
                  php-fpm \
                  php-cli \
@@ -20,31 +16,26 @@ RUN apt-get update -y && apt-get upgrade -y; \
     apt-get -y install ${WP_REQUIREMENTS}
 
 RUN wget https://wordpress.org/latest.tar.gz && \
-    tar -xvf latest.tar.gz;
+    tar -xvf latest.tar.gz
 
-RUN mkdir -p /var/www/html;
+RUN mkdir -p /var/www/html
 
 RUN mv /wordpress/* /var/www/html/ && \
     chown -R www-data:www-data /var/www/html && \
-    rm -r /wordpress && rm latest.tar.gz;
+    rm -r /wordpress && rm latest.tar.gz
+
+COPY ./tools/start.sh /
+
+RUN chmod 777 /start.sh
 
 RUN mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php; \
-    sed -i "s/database_name_here/${DB}/g" /var/www/html/wp-config.php; \
-    sed -i "s/username_here/${USER_NAME}/g" /var/www/html/wp-config.php; \
-    sed -i "s/password_here/${USER_PASSWORD}/g" /var/www/html/wp-config.php; \
-    sed -i "s/localhost/${DB_KIND}/g" /var/www/html/wp-config.php;
-
-RUN sed -i -e "s|;daemonize = yes|daemonize = no|g" /etc/php/7.3/fpm/php-fpm.conf;
-
-RUN echo  "listen = 0.0.0.0:9000" >> /etc/php/7.3/fpm/pool.d/www.conf
-# RUN sed -i "s/run\/php\/php7.3-fpm.sock/0.0.0.0:9000/g" /etc/php/7.3/fpm/pool.d/www.conf
-
-EXPOSE 9000
+    echo  "listen = 0.0.0.0:9000" >> /etc/php/7.3/fpm/pool.d/www.conf; \
+    sed -i -e "s|;daemonize = yes|daemonize = no|g" /etc/php/7.3/fpm/php-fpm.conf
 
 RUN mkdir -p /run/php/
 
-COPY ./tools/start.sh /entry.sh
+ENTRYPOINT	[ "/usr/bin/dumb-init" ]
 
-ENTRYPOINT	["/usr/bin/dumb-init"]
+EXPOSE 9000
 
-CMD	["/usr/sbin/php-fpm7.3"]
+CMD	[ "/start.sh" ]

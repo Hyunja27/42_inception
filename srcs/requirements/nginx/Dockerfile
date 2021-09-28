@@ -7,7 +7,8 @@ FROM debian:buster
 ARG NGINX_REQUIREMENTS="nginx openssl vim"
 
 RUN apt-get update -y && apt-get upgrade -y;  \
-    apt-get -y install ${NGINX_REQUIREMENTS}
+    apt-get -y install ${NGINX_REQUIREMENTS}; \
+    apt-get -y install dumb-init
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -subj "/C=KR/ST=Seoul/L=Seoul/O=42Seoul/OU=spark/CN=spark.42.fr" \
@@ -17,6 +18,8 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 COPY ./default /etc/nginx/sites-available/ 
 # COPY ./nginx.conf /etc/nginx/nginx.conf
 # RUN cp /default /etc/nginx/sites-available/default;
+
+ENTRYPOINT [ "/usr/bin/dumb-init" ]
 
 EXPOSE 443
 

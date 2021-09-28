@@ -6,7 +6,6 @@ volumes:
 
 services: 
   nginx:
-    hostname: spark.42.fr
     depends_on:
       - wordpress
     build: ./requirements/nginx
@@ -20,6 +19,8 @@ services:
     tty: true
 
   wordpress:
+    depends_on:
+      - mariadb
     build: ./requirements/wordpress
     restart: always
     volumes: 
