@@ -7,7 +7,11 @@ RUN sed -i 's/bind-address/#bind-address/g' /etc/mysql/mariadb.conf.d/50-server.
 
 COPY ./tools/start.sh /
 
+COPY ./tools/user_data.sql /
+
 RUN chmod 777 /start.sh
+
+
 
 ENTRYPOINT	[ "/usr/bin/dumb-init" ]
 
