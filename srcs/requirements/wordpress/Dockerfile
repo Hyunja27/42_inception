@@ -15,14 +15,16 @@ ARG WP_REQUIREMENTS="php7.3 \
 RUN apt-get update -y && apt-get upgrade -y; \
     apt-get -y install ${WP_REQUIREMENTS}
 
-RUN wget https://wordpress.org/latest.tar.gz && \
-    tar -xvf latest.tar.gz
+#wordpress-5.8.1구문 확인 다시 해볼 것! 
+
+RUN wget https://wordpress.org/wordpress-5.8.1.tar.gz && \
+    tar -xvf wordpress-5.8.1.tar.gz
 
 RUN mkdir -p /var/www/html
 
 RUN mv /wordpress/* /var/www/html/ && \
     chown -R www-data:www-data /var/www/html && \
-    rm -r /wordpress && rm latest.tar.gz
+    rm -r /wordpress && rm wordpress-5.8.1.tar.gz
 
 COPY ./tools/start.sh /
 
