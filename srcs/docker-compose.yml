@@ -4,6 +4,21 @@ volumes:
   data_wp: {}
   data_db: {}
 
+  #imac에서는 아래와 같이 설절할 것!
+# volumes:
+#   data_wp:
+#       driver: local
+#       driver_opts:
+#           type: 'none'
+#           o: 'bind'
+#           device: '${HOME}/data/wp'
+#   data_db:
+#       driver: local
+#       driver_opts:
+#           type: 'none'
+#           o: 'bind'
+#           device: '${HOME}/data/db'
+
 services: 
   nginx:
     depends_on:
