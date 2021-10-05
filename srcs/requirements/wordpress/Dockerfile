@@ -15,7 +15,8 @@ ARG WP_REQUIREMENTS="php7.3 \
 RUN apt-get update -y && apt-get upgrade -y; \
     apt-get -y install ${WP_REQUIREMENTS}
 
-#wordpress-5.8.1구문 확인 다시 해볼 것! 
+
+# wordpress-5.8.1구문 확인 다시 해볼 것! 
 
 RUN wget https://wordpress.org/wordpress-5.8.1.tar.gz && \
     tar -xvf wordpress-5.8.1.tar.gz
