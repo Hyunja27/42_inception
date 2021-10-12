@@ -1,8 +1,8 @@
 version: '3'
 
 volumes:
-  data_wp: {}
-  data_db: {}
+  data_wp: /home/spark/data/data_wp
+  data_db: /home/spark/data/data_db
 
   #imac에서는 아래와 같이 설절할 것!
 # volumes:
