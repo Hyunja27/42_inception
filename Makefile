@@ -19,6 +19,7 @@ make :
 	@echo "${PURPLE}[${RED} Docker Composer${PURPLE} :starting.. ]"
 	@echo "${PURPLE}->making $(NAME).."
 	@$(YML) up -d
+	@sh srcs/requirements/vm_basic_setup.sh
 	@echo "${PURPLE}->resting.. drinking some coffee..."
 	@echo "${MINT}making Done."
 
