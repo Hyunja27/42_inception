@@ -26,7 +26,7 @@ make :
 stop :
 	@echo "${PURPLE}[${RED} docker stop ${PURPLE} : stop all container.]"
 	@$(YML) down
-	@echo "${PURPLE}->kill every container.."
+	@echo "${PURPLE}->kill every container.." 
 	@echo "${PURPLE}->close all container's door..."
 	@echo "${MINT}stopping Done."
 
