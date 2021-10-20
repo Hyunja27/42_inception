@@ -2,8 +2,6 @@ server
     { 
         listen 443 ssl;
         listen [::]:443 ssl;
-        ssl_on;
-
         server_name spark.42.fr;
 
         ssl_protocols TLSv1.2 TLSv1.3;
