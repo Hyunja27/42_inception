@@ -21,6 +21,7 @@ volumes:
 
 services: 
   nginx:
+    container_name: nginx
     depends_on:
       - wordpress
     build: ./requirements/nginx
@@ -34,6 +35,7 @@ services:
     tty: true
 
   wordpress:
+    container_name: wordpress
     depends_on:
       - mariadb
     build: ./requirements/wordpress
@@ -48,6 +50,7 @@ services:
     tty: true
 
   mariadb:
+    container_name: mariadb
     build: ./requirements/mariadb
     restart: always
     volumes:
