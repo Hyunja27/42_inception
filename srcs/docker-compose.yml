@@ -1,23 +1,22 @@
 version: '3'
 
-#volumes:
-#  data_wp: /home/spark/data/data_wp
-#  data_db: /home/spark/data/data_db
-
-  #imac에서는 아래와 같이 설절할 것!
 volumes:
-  data_wp:
-      driver: local
-      driver_opts:
-          type: 'none'
-          o: 'bind'
-          device: 'home/spark/data/wp'
-  data_db:
-      driver: local
-      driver_opts:
-          type: 'none'
-          o: 'bind'
-          device: 'home/spark/data/db'
+ data_wp: {}
+ data_db: {}
+  #imac에서는 아래와 같이 설절할 것!
+# volumes:
+#   data_wp:
+#       driver: local
+#       driver_opts:
+#           type: 'none'
+#           o: 'bind'
+#           device: 'home/spark/data/wp'
+#   data_db:
+#       driver: local
+#       driver_opts:
+#           type: 'none'
+#           o: 'bind'
+#           device: 'home/spark/data/db'
 
 services: 
   nginx:
